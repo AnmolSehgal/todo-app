@@ -3,6 +3,7 @@ import { stateObj } from "../App";
 import InputComponent from "./InputComponent";
 import { BsPencilSquare } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
+import "../css/CardComponent.css";
 
 export interface CardComponentPropsInterface {
   dataObj: stateObj;

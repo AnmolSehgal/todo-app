@@ -16,7 +16,7 @@ const ListCardComponents = ({
   handleInactiveTask,
 }: ListCardComponentsProps): ReactElement => {
   return (
-    <ul>
+    <ul style={{ listStyle: "none" }}>
       {data.map((individualData) => {
         return (
           <CardComponent
