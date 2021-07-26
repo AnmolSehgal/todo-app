@@ -13,6 +13,7 @@ function InputComponent(obj: props) {
       <input
         type={obj.inputType}
         className={obj.className}
+        defaultValue={obj.inputValue ? obj.inputValue : ""}
         style={{
           height: !obj.height ? "20px" : obj.height,
           width: !obj.width ? "20px" : obj.width,

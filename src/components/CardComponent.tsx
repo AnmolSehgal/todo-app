@@ -4,11 +4,21 @@ import InputComponent from "./InputComponent";
 import { BsPencilSquare } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 
-export const CardComponent = (
-  { content, inactive: inactiveProp, objectID }: stateObj,
-  handleInActive
-) => {
+export interface CardComponentPropsInterface {
+  dataObj: stateObj;
+  handleInactiveTask: (inactive: boolean, objectID: string) => void;
+  handleEditTask: (content: string, objectID: string) => void;
+  handleDeleteTask: (objectID: string) => void;
+}
+
+export const CardComponent = ({
+  dataObj,
+  handleInactiveTask,
+  handleEditTask,
+  handleDeleteTask,
+}: CardComponentPropsInterface) => {
   // setting up state for card Component
+  const { objectID, content, inactive: inactiveProp } = dataObj;
   const [toggle, setToggle] = useState(true);
   const [inactive, setInActive] = useState(inactiveProp);
   return (
@@ -17,7 +27,7 @@ export const CardComponent = (
         type="checkbox"
         defaultChecked={inactiveProp}
         onChange={(evt): void => {
-          handleInActive(inactive, objectID);
+          handleInactiveTask(inactive, objectID);
           setInActive(!inactive);
         }}
       />
@@ -31,7 +41,10 @@ export const CardComponent = (
           className=""
           width="100px"
           inputValue={content}
-          handleSubmit={editContent}
+          handleSubmit={(value) => {
+            handleEditTask(value, objectID);
+            setToggle(!toggle);
+          }}
         />
       )}
       <i>
@@ -50,7 +63,7 @@ export const CardComponent = (
         <ImCross
           color="#ebdbda"
           onClick={(evt) => {
-            handleDelete(keyValue);
+            handleDeleteTask(objectID);
           }}
         />
       </i>

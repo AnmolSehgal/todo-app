@@ -1,19 +1,34 @@
 import { ReactElement } from "react";
 import { stateObj } from "../App";
+import { CardComponent } from "./CardComponent";
 
 interface ListCardComponentsProps {
   data: stateObj[];
-  handleEdit: (objectID: string, content: string) => void;
-  handleInactiveActive: (inactive: boolean) => void;
-  handleDelete: (objectID: string) => void;
+  handleEditTask: (content: string, objectID: string) => void;
+  handleInactiveTask: (inactive: boolean, objectID: string) => void;
+  handleDeleteTask: (objectID: string) => void;
 }
 
 const ListCardComponents = ({
   data,
-  handleDelete,
-  handleEdit,
-  handleInactiveActive,
+  handleDeleteTask,
+  handleEditTask,
+  handleInactiveTask,
 }: ListCardComponentsProps): ReactElement => {
-  return <ul></ul>;
+  return (
+    <ul>
+      {data.map((individualData) => {
+        return (
+          <CardComponent
+            dataObj={individualData}
+            handleDeleteTask={handleDeleteTask}
+            handleEditTask={handleEditTask}
+            handleInactiveTask={handleInactiveTask}
+            key={individualData.objectID}
+          />
+        );
+      })}
+    </ul>
+  );
 };
 export default ListCardComponents;
