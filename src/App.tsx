@@ -5,7 +5,7 @@ import ListCardComponents from "./components/ListCardComponents";
 import { v4 as uuidv4 } from "uuid";
 import "./css/InputComponent.css";
 import { FilterComponent } from "./components/FilterComponent";
-
+import { clone } from "ramda";
 export interface stateObj {
   objectID: string;
   content: string;
@@ -41,13 +41,15 @@ class App extends Component<{}, AppStateInterface> {
   };
 
   edit = (content: string, objectID: string): void => {
-    const arr: stateObj[] = this.state.data;
+    const arr: stateObj[] = clone(this.state.data);
     const index = arr.findIndex((value: stateObj) => {
       return value.objectID === objectID;
     });
+
     if (index > -1) {
       arr[index].content = content;
     }
+    this.setState({ data: arr });
   };
   setActiveInactive = (inactive: boolean, objectID: string): void => {
     const arr: stateObj[] = this.state.data;
