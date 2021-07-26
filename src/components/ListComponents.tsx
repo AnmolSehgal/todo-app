@@ -3,10 +3,17 @@ import { stateObj } from "../App";
 
 interface ListCardComponentsProps {
   data: stateObj[];
-  handleSubmit: (content: string) => void;
+  handleEdit: (objectID: string, content: string) => void;
+  handleInactiveActive: (inactive: boolean) => void;
+  handleDelete: (objectID: string) => void;
 }
 
-const ListCardComponents = ({}: ListCardComponentsProps): ReactElement => {
+const ListCardComponents = ({
+  data,
+  handleDelete,
+  handleEdit,
+  handleInactiveActive,
+}: ListCardComponentsProps): ReactElement => {
   return <ul></ul>;
 };
 export default ListCardComponents;

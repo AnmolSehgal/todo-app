@@ -1,5 +1,6 @@
 interface props {
   inputType: string;
+  inputValue?: string;
   className: string;
   height?: string;
   width?: string;
