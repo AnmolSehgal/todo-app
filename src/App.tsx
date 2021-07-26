@@ -10,16 +10,11 @@ export interface stateObj {
   content: string;
   inactive: boolean;
 }
-export interface AppStateInterface {
-  data: stateObj[];
-  inputData: string;
-  stateOfTab: string;
-}
 const App = (): ReactElement => {
   // Setting up state for App Component
 
   const [data, setData] = useState<stateObj[]>([]);
-  const [dataSet, setData] = useState();
+
   return (
     <div className="app-container">
       <p className="title">todos</p>
