@@ -1,3 +1,8 @@
 .app-container{
     text-align: center;
 }
+.title{
+    color:#ebdbda;
+    font-size: 70px;
+    font-family: 'Courier New', Courier, monospace;
+}

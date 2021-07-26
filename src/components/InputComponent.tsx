@@ -1,22 +1,50 @@
+import { Component } from "react";
 
-
-interface props{
+interface PropsInputComponent{
     inputType:string;
     className:string;
     height?:string;
     width?:string;
     placeholder?:string;
+    inputValue?:string;
+    fontSize?:string;
+    handleSubmit : (content:string)=>void;
 }
-function InputComponent(obj:props){
-    return(
-        <div>
-            
-            <input  type = {obj.inputType} 
-                    className={obj.className} 
-                    style={{height:!obj.height?'20px':obj.height,width:!obj.width?'20px':obj.width}}
-                    placeholder={obj.placeholder?'':obj.placeholder}
+interface InputState{
+        inputData:string;
+}
+class InputComponent extends Component<PropsInputComponent,InputState>{
+    constructor(props:PropsInputComponent){
+        super(props);
+        this.state = {
+                        inputData: this.props.inputValue || "",
+                    };
+
+    }
+    
+    render(){
+        const {inputType,className,height,width,placeholder,fontSize,handleSubmit,inputValue} = this.props;
+        return(
+                <input  type = {inputType} 
+                    className={className} 
+                    style={{height:!height?'20px':height,width:!width?'20px':width,fontSize:!fontSize?'20px':fontSize}}
+                    placeholder={placeholder?'':placeholder}
+                    defaultValue = {inputValue}
+                    
+                    onKeyUp={(event):void=>{
+                        const val = (event.target as HTMLInputElement).value;
+                        
+                        if(event.key==='Enter')
+                        {
+                            
+                            if(val.length>0){
+                                handleSubmit(val);
+                                (event.target as HTMLInputElement).value="";
+                            }
+                        }
+                    }}
                     />
-        </div>
     )
+                }
 }
 export default InputComponent;

@@ -1,0 +1,6 @@
+.todoActive{
+    text-decoration-line: line-through;
+}
+.todoInActive{
+    text-decoration-line: none;
+}
