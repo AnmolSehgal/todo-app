@@ -27,7 +27,7 @@ export const CardComponent = ({
         type="checkbox"
         defaultChecked={inactiveProp}
         onChange={(evt): void => {
-          handleInactiveTask(inactive, objectID);
+          handleInactiveTask(!inactive, objectID);
           setInActive(!inactive);
         }}
       />

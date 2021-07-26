@@ -6,6 +6,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { clone } from "ramda";
 import ListCardComponents from "./components/ListComponents";
+import { FilterComponent } from "./components/FilterComponent";
 
 export interface stateObj {
   objectID: string;
@@ -16,7 +17,7 @@ const App = (): ReactElement => {
   // Setting up state for App Component
 
   const [data, setData] = useState<stateObj[]>([]);
-
+  const [completionStatus, setCompletionStatus] = useState("All");
   const handleEditTask = (content: string, objectID: string): void => {
     const arr = clone(data);
     const index = data.findIndex((value) => {
@@ -42,6 +43,20 @@ const App = (): ReactElement => {
       })
     );
   };
+  const handleCompletionTask = (completionStatus: string) => {
+    setCompletionStatus(completionStatus);
+  };
+  const dataSetFliter = () => {
+    if (completionStatus === "Active")
+      return data.filter((value) => {
+        return value.inactive === false;
+      });
+    if (completionStatus === "In active")
+      return data.filter((value) => {
+        return value.inactive === true;
+      });
+    return data;
+  };
   return (
     <div className="app-container">
       <p className="title">todos</p>
@@ -58,10 +73,14 @@ const App = (): ReactElement => {
         }}
       />
       <ListCardComponents
-        data={data}
+        data={dataSetFliter()}
         handleEditTask={handleEditTask}
         handleDeleteTask={handleDeleteTask}
         handleInactiveTask={handleInactiveTask}
+      />
+      <FilterComponent
+        elementName={["All", "Active", "In active"]}
+        handleCompletionTask={handleCompletionTask}
       />
     </div>
   );
