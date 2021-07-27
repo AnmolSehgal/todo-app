@@ -1,6 +1,46 @@
 .todoActive {
   text-decoration-line: line-through;
+  color: rgb(195, 195, 195);
 }
 .todoInActive {
   text-decoration-line: none;
+  color: rgba(173, 173, 173, 0.966);
+}
+.liContainer {
+  margin: 0;
+  padding: 0;
+  border: solid rgba(161, 161, 161, 0.4) 0.5px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.iconGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.inputBarforEdit {
+  border: solid rgba(161, 161, 161, 0.4) 0.5px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 15px rgba(161, 161, 161, 0.1);
+  caret-color: rgba(161, 161, 161, 0.4);
+  width: 50%;
+  height: 20px;
+  font-size: 16px;
+  color: rgba(88, 88, 88, 0.8);
+  font-style: normal;
+  outline: none;
+}
+.contentStyle {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  width: 50%;
+  display: flex;
+  justify-self: center;
 }

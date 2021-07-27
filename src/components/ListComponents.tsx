@@ -1,6 +1,8 @@
 import { ReactElement } from "react";
+
 import { stateObj } from "../App";
 import { CardComponent } from "./CardComponent";
+import "../css/ListComponents.css";
 
 interface ListCardComponentsProps {
   data: stateObj[];
@@ -16,7 +18,7 @@ const ListCardComponents = ({
   handleInactiveTask,
 }: ListCardComponentsProps): ReactElement => {
   return (
-    <ul style={{ listStyle: "none" }}>
+    <ul className="ulContainer">
       {data.map((individualData) => {
         return (
           <CardComponent

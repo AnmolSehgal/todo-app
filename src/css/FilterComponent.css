@@ -1,0 +1,13 @@
+.activeStatus {
+  color: rgb(3, 137, 190);
+}
+.nonActiveStatus {
+  color: rgba(173, 173, 173, 0.966);
+}
+.statusTabContainer {
+  width: 80%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { stateObj } from "../App";
-import InputComponent from "./InputComponent";
 import { BsPencilSquare } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
+import classNames from "classnames";
+
+import InputComponent from "./InputComponent";
 import "../css/CardComponent.css";
 
 export interface CardComponentPropsInterface {
@@ -23,7 +25,7 @@ export const CardComponent = ({
   const [toggle, setToggle] = useState(true);
   const [inactive, setInActive] = useState(inactiveProp);
   return (
-    <li>
+    <li className="liContainer">
       <input
         type="checkbox"
         defaultChecked={inactiveProp}
@@ -33,13 +35,18 @@ export const CardComponent = ({
         }}
       />
       {toggle ? (
-        <span className={inactive ? "todoActive" : "todoInactive"}>
+        <span
+          className={classNames(
+            inactive ? "todoActive" : "todoInactive",
+            "contentStyle"
+          )}
+        >
           {content}{" "}
         </span>
       ) : (
         <InputComponent
           inputType="text"
-          className=""
+          className="inputBarforEdit"
           width="100px"
           inputValue={content}
           handleSubmit={(value) => {
@@ -48,26 +55,28 @@ export const CardComponent = ({
           }}
         />
       )}
-      <i>
-        {toggle ? (
-          <BsPencilSquare
+      <div className="iconGroup">
+        <i>
+          {toggle ? (
+            <BsPencilSquare
+              color="#ebdbda"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </i>
+        <i>
+          <ImCross
             color="#ebdbda"
-            onClick={() => {
-              setToggle(!toggle);
+            onClick={(evt) => {
+              handleDeleteTask(objectID);
             }}
           />
-        ) : (
-          ""
-        )}
-      </i>
-      <i>
-        <ImCross
-          color="#ebdbda"
-          onClick={(evt) => {
-            handleDeleteTask(objectID);
-          }}
-        />
-      </i>
+        </i>
+      </div>
     </li>
   );
 };

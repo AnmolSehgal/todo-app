@@ -86,6 +86,7 @@ const App = (): ReactElement => {
         handleInactiveTask={handleInactiveTask}
       />
       <FilterComponent
+        completionStatus={completionStatus}
         elementName={["All", "Active", "In active"]}
         handleCompletionTask={handleCompletionTask}
       />
