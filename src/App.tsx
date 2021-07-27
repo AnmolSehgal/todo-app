@@ -1,10 +1,11 @@
 import { ReactElement } from "react";
-import InputComponent from "./components/InputComponent";
-import "./App.css";
-import "./css/InputComponent.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { clone } from "ramda";
+
+import "./App.css";
+import "./css/InputComponent.css";
+import InputComponent from "./components/InputComponent";
 import ListCardComponents from "./components/ListComponents";
 import { FilterComponent } from "./components/FilterComponent";
 
@@ -13,11 +14,14 @@ export interface stateObj {
   content: string;
   inactive: boolean;
 }
+
 const App = (): ReactElement => {
   // Setting up state for App Component
 
   const [data, setData] = useState<stateObj[]>([]);
   const [completionStatus, setCompletionStatus] = useState("All");
+
+  // Setting up the handlers
   const handleEditTask = (content: string, objectID: string): void => {
     const arr = clone(data);
     const index = data.findIndex((value) => {
@@ -43,9 +47,11 @@ const App = (): ReactElement => {
       })
     );
   };
+
   const handleCompletionTask = (completionStatus: string) => {
     setCompletionStatus(completionStatus);
   };
+
   const dataSetFliter = () => {
     if (completionStatus === "Active")
       return data.filter((value) => {
@@ -55,6 +61,7 @@ const App = (): ReactElement => {
       return data.filter((value) => {
         return value.inactive === true;
       });
+
     return data;
   };
   return (

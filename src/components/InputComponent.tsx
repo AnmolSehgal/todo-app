@@ -1,28 +1,39 @@
-interface props {
+interface InputComponentProps {
   inputType: string;
   inputValue?: string;
   className: string;
   height?: string;
   width?: string;
   placeholder?: string;
+  fontSize?: string;
   handleSubmit: (content: string) => void;
 }
-function InputComponent(obj: props) {
+function InputComponent({
+  inputType,
+  className,
+  height,
+  width,
+  fontSize,
+  placeholder,
+  inputValue,
+  handleSubmit,
+}: InputComponentProps) {
   return (
     <div>
       <input
-        type={obj.inputType}
-        className={obj.className}
-        defaultValue={obj.inputValue ? obj.inputValue : ""}
+        type={inputType}
+        className={className}
+        defaultValue={inputValue ? inputValue : ""}
         style={{
-          height: !obj.height ? "20px" : obj.height,
-          width: !obj.width ? "20px" : obj.width,
+          height: !height ? "20px" : height,
+          width: !width ? "20px" : width,
+          fontSize: !fontSize ? "20px" : fontSize,
         }}
-        placeholder={obj.placeholder ? "" : obj.placeholder}
+        placeholder={placeholder ? "" : placeholder}
         onKeyUp={(evnt) => {
           if (evnt.key === "Enter") {
             const val = (evnt.target as HTMLInputElement).value;
-            if (val.length > 0) obj.handleSubmit(val);
+            if (val.length > 0) handleSubmit(val);
             (evnt.target as HTMLInputElement).value = "";
           }
         }}
